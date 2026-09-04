@@ -2,22 +2,22 @@
 
 @theme {
   --color-background: #fdfbf7;
-  --color-foreground: #1a1a1a;
-  --color-surface: #ffffff;
-  --color-surface-highlight: #f3f4f6;
-  --color-primary: #f97316;
-  --color-secondary: #3b82f6;
-  --color-accent: #8b5cf6;
+  --color-foreground: #04151f;
+  --color-white: #ffffff;
+  --color-grey-light: #f3f4f6;
+  --color-grey-dark: #67738A;
+  --color-green-dark: #183a37;
+  --color-burgandy: #432534;
+  --color-orange: #c44900;
   --font-serif: "Instrument Serif", serif;
   --font-sans: "Inter", sans-serif;
-  --shadow-neobrutalism: 4px 4px 0px 0px rgba(0, 0, 0, 1);
 }
 
 @layer base {
   body {
     font-family: Inter, sans-serif;
     background-color: #fdfbf7;
-    color: #1a1a1a;
+    color: #04151f;
   }
 
   h1 {
@@ -43,7 +43,19 @@
       font-size: 20px;
     }
   }
+  h3 {
+    font-size: 20px;
+    font-family: Instrument Serif, serif;
+    font-weight: 600;
+    line-height: 118%;
+    letter-spacing: -0.2px;
+    margin: 0 0 8px;
+    @media (max-width: 1024px) {
+      font-size: 18px;
+    }
+  }
   p {
+    font-size: 12px;
     font-family: Inter, sans-serif;
     margin: 0;
   }
@@ -53,16 +65,16 @@
   .btn {
     @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:pointer-events-none;
 
-    &.btn--primary {
-      @apply bg-primary text-white hover:bg-[#EA580C] shadow-sm;
+    &.btn--green-dark {
+      @apply bg-green-dark text-white shadow-sm;
     }
-    &.btn--secondary {
-      @apply bg-secondary text-black border border-zinc-200 hover:bg-zinc-50 shadow-sm;
+    &.btn--burgandy {
+      @apply bg-burgandy text-black border border-zinc-200 hover:bg-zinc-50 shadow-sm;
     }
   }
 
   .card {
-    @apply bg-surface border border-white/5 rounded-3xl shadow-xl p-6;
+    @apply bg-white border border-white/5 rounded-3xl shadow-xl p-6;
 
     .card__header {
       @apply flex justify-between items-center mb-4;
@@ -73,12 +85,43 @@
     }
   }
 
-  .upload {
-    @apply w-full;
 
-    .dropzone {
-      @apply relative h-48 rounded-xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer bg-zinc-50 border-zinc-200 hover:border-zinc-300 hover:bg-zinc-300 hover:bg-zinc-100;
-    }
 
+  .upload-shell {
+    @apply justify-self-center relative mx-auto w-[50%] h-100 rounded-3xl border-2 border-dashed border-grey-dark bg-grey-light overflow-hidden flex items-center justify-center;
   }
+
+  .grid-overlay {
+    @apply pointer-events-none absolute inset-0 opacity-[0.15];
+    background-image:
+      linear-gradient(to right, #04151f 1px, transparent 1px),
+      linear-gradient(to bottom, #04151f 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .upload-card {
+    @apply relative p-6 flex flex-col items-center justify-self-center rounded-lg w-[70%] bg-background gap-2 shadow-lg gap-4;
+  }
+
+  .upload-head {
+    @apply flex flex-col items-center justify-center p-4;
+  }
+
+  .upload-icon {
+    @apply w-12 h-12 flex items-center justify-center rounded-full bg-green-dark/40;
+  }
+
+  .upload {
+    @apply relative p-6 flex flex-col items-center justify-self-center rounded-lg w-[70%] 
+    border-2 border-dashed border-grey-dark bg-grey-light gap-2 shadow-lg gap-4 cursor-pointer;
+  }
+
+  .drop-content {
+    @apply flex flex-col items-center justify-center gap-2;
+  }
+
+  .drop-icon {
+    @apply w-12 h-12 flex items-center justify-center rounded-full bg-grey-dark/40;
+  }
+
 }

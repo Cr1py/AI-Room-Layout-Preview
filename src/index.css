@@ -73,20 +73,6 @@
     }
   }
 
-  .card {
-    @apply bg-white border border-white/5 rounded-3xl shadow-xl p-6;
-
-    .card__header {
-      @apply flex justify-between items-center mb-4;
-
-      h3 {
-        @apply text-lg font-semibold text-zinc-100;
-      }
-    }
-  }
-
-
-
   .upload-shell {
     @apply justify-self-center relative mx-auto w-[50%] h-100 rounded-3xl border-2 border-dashed border-grey-dark bg-grey-light overflow-hidden flex items-center justify-center;
   }
@@ -111,11 +97,6 @@
     @apply w-12 h-12 flex items-center justify-center rounded-full bg-green-dark/40;
   }
 
-  .upload {
-    @apply relative p-6 flex flex-col items-center justify-self-center rounded-lg w-[70%] 
-    border-2 border-dashed border-grey-dark bg-grey-light gap-2 shadow-lg gap-4 cursor-pointer;
-  }
-
   .drop-content {
     @apply flex flex-col items-center justify-center gap-2;
   }
@@ -123,5 +104,48 @@
   .drop-icon {
     @apply w-12 h-12 flex items-center justify-center rounded-full bg-grey-dark/40;
   }
+
+  .upload-dropzone {
+    @apply relative p-6 flex flex-col items-center justify-self-center rounded-lg w-[80%] 
+    border-2 border-dashed border-grey-dark bg-grey-light gap-2 shadow-lg gap-4 cursor-pointer;
+  }
+
+  .drop-input {
+    @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10;
+  }
+
+  .upload-status {
+    @apply relative p-6 flex flex-col items-center justify-self-center rounded-lg 
+    border-2 border-dashed border-grey-dark bg-grey-light gap-2 shadow-lg gap-4 cursor-pointer;
+  }
+
+  .status-content {
+    @apply flex items-center gap-4 w-full;
+  }
+
+  .status-icon {
+    @apply flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-grey-dark/10;
+  }
+
+  .status-details {
+    @apply flex flex-col flex-1 gap-1.5 min-w-0;
+
+    h3 {
+      @apply truncate text-foreground;
+    }
+  }
+
+  .progress {
+    @apply relative w-full h-2 rounded-full bg-grey-light overflow-hidden;
+  }
+
+  .progress-bar {
+    @apply h-full rounded-full bg-green-dark transition-all duration-200 ease-out;
+  }
+
+  .status-text {
+    @apply text-grey-dark;
+  }
+
 
 }

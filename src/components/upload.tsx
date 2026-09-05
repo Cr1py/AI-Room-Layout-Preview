@@ -115,19 +115,20 @@ const Upload = ({ onComplete }: UploadProps) => {
       ) : (
         <div className="upload-status"> 
           <div className="status-content">
-
             <div className="status-icon">
               {progress === 100 ? (
                 <CheckCircle2 size={20} lightingColor="bg-green-dark" />
               ) : (
                 <ImageIcon size={20} lightingColor="bg-grey-dark" />
               )}
+            </div>
 
+            <div className="status-details">
               <h3>{file.name}</h3>
               <div className="progress">
                 <div className="progress-bar" style={{ width: `${progress}%` }} />
-                <p className="status-text">{progress < 100 ? 'Generating Floor Plan' : `Redirecting... ${progress}%`}</p>
               </div>
+              <p className="status-text">{progress < 100 ? 'Generating Floor Plan' : `Redirecting... ${progress}%`}</p>
             </div>
           </div>
         </div>

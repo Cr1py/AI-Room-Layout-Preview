@@ -1,6 +1,11 @@
 import puter from "@heyputer/puter.js";
 import {AI_RENDER_PROMPT} from "./constants";
 
+interface Generate3DViewParams {
+    sourceImage: string;
+    projectId?: string | null;
+}
+
 export const fetchAsDataUrl = async (url: string): Promise<string> => {
   const response = await fetch(url);
 
@@ -28,7 +33,7 @@ export const generate3DView = async ({ sourceImage }: Generate3DViewParams) => {
 
     if(!mimeType || !base64Data) throw new Error('Invalid source image payload');
 
-    const response = await puter.ai.txt2img(ROOMIFY_RENDER_PROMPT, {
+    const response = await puter.ai.txt2img(AI_RENDER_PROMPT, {
         provider: "gemini",
         model: "gemini-2.5-flash-image-preview",
         input_image: base64Data,

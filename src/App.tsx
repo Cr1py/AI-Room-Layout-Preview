@@ -1,9 +1,21 @@
-import Upload from './components/upload';
-import { Layers } from 'lucide-react';
+import Upload from './components/Upload';
+import { Layers, Download, Share2, RefreshCcw, Sparkles } from 'lucide-react';
+import Button from './components/ui/Button';
+import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+import { roomGeneration } from './components/lib/roomGeneration';
 import './App.css';
 
 function App() {
-  
+  const {
+    sourceImage,
+    currentImage,
+    isProcessing,
+    error,
+    handleUploadComplete,
+    handleGenerate,
+    handleExport,
+  } = roomGeneration();
+
   return (
     <div className="App">
       <h1>AI Room Layout Preview</h1>
@@ -19,17 +31,27 @@ function App() {
           <div className="upload-head">
             <div className="upload-icon">
               <Layers lightingColor="bg-green-dark" />
-            </div> 
+            </div>
             <h3>Upload your floor plan</h3>
             <p>Supports JPG, PNG, and WebP files.</p>
-          </div>  
+          </div>
 
-          <Upload />
+          <Upload onComplete={handleUploadComplete} />
 
-        </div>      
+          {sourceImage && (
+            <Button
+              size="sm"
+              onClick={handleGenerate}
+              className="generate"
+              disabled={isProcessing}
+            >
+              <Sparkles className="w-4 h-4 mr-2" />
+              {isProcessing ? 'Generating...' : currentImage ? 'Regenerate' : 'Generate 3D View'}
+            </Button>
+          )}
+
+        </div>
       </div>
-
-      
 
       <div className="title">
         <h2>Generate 3D Preview</h2>
@@ -38,17 +60,67 @@ function App() {
       <div className="display-section">
         <div className="display-container">
           <div className="display-card">
-            <div className="preview">
+            <div className="panel-header">
+              <div className="panel-meta">
+                <p>Project</p>
+                <h3>Your Design</h3>
+              </div>
 
+              <div className="panel-actions">
+                <Button
+                  size="sm"
+                  onClick={handleExport}
+                  className="export"
+                  disabled={!currentImage}
+                >
+                  <Download className="w-4 h-4 mr-2" /> Export
+                </Button>
+                <Button size="sm" onClick={() => {}} className="share">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share
+                </Button>
+              </div>
             </div>
-          </div>  
+
+            <div className={`render-area ${isProcessing ? 'is-processing' : ''}`}>
+              {sourceImage && currentImage ? (
+                <ReactCompareSlider
+                  defaultValue={50}
+                  style={{ width: '100%', height: '100%' }}
+                  itemOne={
+                    <ReactCompareSliderImage src={sourceImage} alt="before" className="compare-img" />
+                  }
+                  itemTwo={
+                    <ReactCompareSliderImage src={currentImage} alt="after" className="compare-img" />
+                  }
+                />
+              ) : (
+                <div className="render-placeholder">
+                  {sourceImage && (
+                    <img src={sourceImage} alt="Original" className="render-fallback" />
+                  )}
+                </div>
+              )}
+
+              {isProcessing && (
+                <div className="render-overlay">
+                  <div className="rendering-card">
+                    <RefreshCcw className="spinner" />
+                    <span className="title">Rendering...</span>
+                    <span className="subtitle">Generating your 3D visualization</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {error && <p className="error-text">{error}</p>}
+
+          </div>
         </div>
       </div>
 
-
     </div>
-    
-  )
+  );
 }
 
-export default App
+export default App;

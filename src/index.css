@@ -147,5 +147,53 @@
     @apply text-grey-dark;
   }
 
+  .display-section {
+    @apply flex justify-center;
+  }
+
+  .display-container {
+    @apply w-[50%] mx-auto;
+  }
+
+  .display-card {
+    @apply flex flex-col gap-4 w-full;
+  }
+
+  .render-area {
+    @apply relative w-full h-100 rounded-3xl overflow-hidden bg-grey-light border-2 border-dashed border-grey-dark;
+  }
+
+  .render-img,
+  .render-fallback {
+    @apply w-full h-full object-cover;
+  }
+
+  .render-placeholder {
+    @apply w-full h-full flex items-center justify-center;
+  }
+
+  .render-overlay {
+    @apply absolute inset-0 flex items-center justify-center bg-background/70;
+  }
+
+  .compare-stage {
+    @apply w-full h-100 rounded-3xl overflow-hidden;
+  }
+
+  .compare-img {
+    @apply w-full h-full object-cover;
+  }
+
+  .generate {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 mt-2
+    bg-green-dark text-white text-sm font-medium shadow-sm
+    transition-all duration-200
+    hover:opacity-90
+    disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .error-text {
+    @apply mt-2 text-center text-orange;
+  }
 
 }

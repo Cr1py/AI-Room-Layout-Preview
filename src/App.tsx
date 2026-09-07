@@ -14,6 +14,7 @@ function App() {
     handleUploadComplete,
     handleGenerate,
     handleExport,
+    handleShare
   } = roomGeneration();
 
   return (
@@ -106,9 +107,13 @@ function App() {
               >
                 <Download className="w-4 h-4 mr-2" /> Export
               </Button>
-              <Button size="sm" onClick={() => {}} className="share">
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
+              <Button 
+                size="sm" 
+                onClick={handleShare} 
+                className="share" 
+                disabled={!currentImage}
+              >
+                <Share2 className="w-4 h-4 mr-2" /> Share
               </Button>
           </div>
 

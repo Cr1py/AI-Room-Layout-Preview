@@ -87,9 +87,8 @@ function App() {
             {isProcessing && (
               <div className="render-overlay">
                 <div className="rendering-card">
-                  <RefreshCcw className="spinner" />
-                  <span className="title">Rendering...</span>
-                  <span className="subtitle">Generating your 3D visualization</span>
+                  <RefreshCcw />
+                  <span>Rendering...</span>
                 </div>
               </div>
             )}

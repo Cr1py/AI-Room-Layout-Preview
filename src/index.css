@@ -173,6 +173,11 @@
     @apply absolute inset-0 flex items-center justify-center bg-background/70;
   }
 
+  .rendering-card {
+    @apply flex justify-center gap-4;
+  }
+
+
   .compare-stage {
     @apply w-full h-100 rounded-3xl overflow-hidden;
   }

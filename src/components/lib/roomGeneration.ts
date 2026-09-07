@@ -52,7 +52,7 @@ export const roomGeneration = () => {
     try {
       const response = await fetch(currentImage);
       const blob = await response.blob();
-      const file = new File([blob], 'roomify-design.png', { type: blob.type || 'image/png' });
+      const file = new File([blob], 'ai-design.png', { type: blob.type || 'image/png' });
 
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({

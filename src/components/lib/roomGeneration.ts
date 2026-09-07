@@ -41,7 +41,7 @@ export const roomGeneration = () => {
 
     const link = document.createElement('a');
     link.href = currentImage;
-    link.download = `roomify-design.png`;
+    link.download = `ai-design.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

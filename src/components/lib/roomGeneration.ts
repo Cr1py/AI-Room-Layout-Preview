@@ -13,7 +13,6 @@ export const roomGeneration = () => {
     setSourceImage(base64Data);
   };
 
-  
   const handleGenerate = async () => {
     if (!sourceImage) return;
 
@@ -47,6 +46,30 @@ export const roomGeneration = () => {
     document.body.removeChild(link);
   };
 
+  const handleShare = async () => {
+    if (!currentImage) return;
+
+    try {
+      const response = await fetch(currentImage);
+      const blob = await response.blob();
+      const file = new File([blob], 'roomify-design.png', { type: blob.type || 'image/png' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'Room Rendered',
+        });
+      } else {
+        setError('Sharing isn\'t supported in this browser D:.');
+      }
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') {
+        console.error('Share failed:', err);
+        setError('Something went wrong while sharing D:.');
+      }
+    }
+  };
+
   return {
     sourceImage,
     currentImage,
@@ -55,5 +78,6 @@ export const roomGeneration = () => {
     handleUploadComplete,
     handleGenerate,
     handleExport,
+    handleShare
   };
 };

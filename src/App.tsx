@@ -18,101 +18,105 @@ function App() {
 
   return (
     <div className="App">
-      <h1>AI Room Layout Preview</h1>
-
       <div className="title">
-        <h2>Upload Room Layout</h2>
+        <h1>AI Room Layout Preview</h1>
       </div>
 
-      <div id="upload" className="upload-shell">
-        <div className="grid-overlay" />
-        <div className="upload-card">
+      <div className="upload-section">
+        <div className="title">
+          <h2>Upload Room Layout</h2>
+        </div>
 
-          <div className="upload-head">
-            <div className="upload-icon">
-              <Layers lightingColor="bg-green-dark" />
+        <div id="upload" className="shell">
+          <div className="grid-overlay" />
+          <div className="upload-card">
+            <div className="upload-head">
+              <div className="upload-icon">
+                <Layers lightingColor="bg-green-dark" />
+              </div>
+              <h3>Upload your floor plan</h3>
+              <p>Supports JPG, PNG, and WebP files.</p>
             </div>
-            <h3>Upload your floor plan</h3>
-            <p>Supports JPG, PNG, and WebP files.</p>
+
+            <Upload onComplete={handleUploadComplete} />
+
+            {sourceImage && (
+              <Button
+                size="sm"
+                onClick={handleGenerate}
+                className="generate"
+                disabled={isProcessing}
+              >
+                <Sparkles className="w-4 h-4 mr-2" />
+                {isProcessing ? 'Generating...' : currentImage ? 'Regenerate' : 'Generate 3D View'}
+              </Button>
+            )}
+
           </div>
-
-          <Upload onComplete={handleUploadComplete} />
-
-          {sourceImage && (
-            <Button
-              size="sm"
-              onClick={handleGenerate}
-              className="generate"
-              disabled={isProcessing}
-            >
-              <Sparkles className="w-4 h-4 mr-2" />
-              {isProcessing ? 'Generating...' : currentImage ? 'Regenerate' : 'Generate 3D View'}
-            </Button>
-          )}
-
         </div>
       </div>
 
-      <div className="title">
-        <h2>Generate 3D Preview</h2>
-      </div>
-
       <div className="display-section">
+        <div className="title">
+          <h2>Generate 3D Preview</h2>
+        </div>
+
         <div className="display-container">
-          <div className="display-card">
-            <div className="display-buttons">
-                <Button
-                  size="sm"
-                  onClick={handleExport}
-                  className="export"
-                  disabled={!currentImage}
-                >
-                  <Download className="w-4 h-4 mr-2" /> Export
-                </Button>
-                <Button size="sm" onClick={() => {}} className="share">
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Share
-                </Button>
-            </div>
 
-            <div className={`render-area ${isProcessing ? 'is-processing' : ''}`}>
-              {sourceImage && currentImage ? (
-                <ReactCompareSlider
-                  defaultValue={50}
-                  style={{ width: '100%', height: '100%' }}
-                  itemOne={
-                    <ReactCompareSliderImage src={sourceImage} alt="before" className="compare-img" />
-                  }
-                  itemTwo={
-                    <ReactCompareSliderImage src={currentImage} alt="after" className="compare-img" />
-                  }
-                />
-              ) : (
-                <div className="render-placeholder">
-                  {sourceImage && (
-                    <img src={sourceImage} alt="Original" className="render-fallback" />
-                  )}
+          <div className={`shell  ${isProcessing ? 'is-processing' : ''}`}>
+            <div className="grid-overlay" />
+            {sourceImage && currentImage ? (
+              <ReactCompareSlider
+                defaultValue={50}
+                style={{ width: '100%', height: '100%' }}
+                itemOne={
+                  <ReactCompareSliderImage src={sourceImage} alt="before" className="compare-img" />
+                }
+                itemTwo={
+                  <ReactCompareSliderImage src={currentImage} alt="after" className="compare-img" />
+                }
+              />
+            ) : (
+              <div className="render-placeholder">
+                {sourceImage && (
+                  <img src={sourceImage} alt="Original" className="render-fallback" />
+                )}
+              </div>
+            )}
+
+            {isProcessing && (
+              <div className="render-overlay">
+                <div className="rendering-card">
+                  <RefreshCcw className="spinner" />
+                  <span className="title">Rendering...</span>
+                  <span className="subtitle">Generating your 3D visualization</span>
                 </div>
-              )}
-
-              {isProcessing && (
-                <div className="render-overlay">
-                  <div className="rendering-card">
-                    <RefreshCcw className="spinner" />
-                    <span className="title">Rendering...</span>
-                    <span className="subtitle">Generating your 3D visualization</span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {error && <p className="error-text">{error}</p>}
-
+              </div>
+            )}
           </div>
+
+          {error && <p className="error-text">{error}</p>}
+
+          <div className="display-buttons">
+              <Button
+                size="sm"
+                onClick={handleExport}
+                className="export"
+                disabled={!currentImage}
+              >
+                <Download className="w-4 h-4 mr-2" /> Export
+              </Button>
+              <Button size="sm" onClick={() => {}} className="share">
+                <Share2 className="w-4 h-4 mr-2" />
+                Share
+              </Button>
+          </div>
+
         </div>
       </div>
 
     </div>
+
   );
 }
 

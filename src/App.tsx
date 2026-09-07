@@ -60,13 +60,7 @@ function App() {
       <div className="display-section">
         <div className="display-container">
           <div className="display-card">
-            <div className="panel-header">
-              <div className="panel-meta">
-                <p>Project</p>
-                <h3>Your Design</h3>
-              </div>
-
-              <div className="panel-actions">
+            <div className="display-buttons">
                 <Button
                   size="sm"
                   onClick={handleExport}
@@ -79,7 +73,6 @@ function App() {
                   <Share2 className="w-4 h-4 mr-2" />
                   Share
                 </Button>
-              </div>
             </div>
 
             <div className={`render-area ${isProcessing ? 'is-processing' : ''}`}>

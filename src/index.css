@@ -63,14 +63,8 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center mr-6;
 
-    &.btn--green-dark {
-      @apply bg-green-dark text-white shadow-sm;
-    }
-    &.btn--burgandy {
-      @apply bg-burgandy text-black border border-zinc-200 hover:bg-zinc-50 shadow-sm;
-    }
   }
 
   .upload-shell {
@@ -148,7 +142,7 @@
   }
 
   .display-section {
-    @apply flex justify-center;
+    @apply flex justify-center mb-8;
   }
 
   .display-container {

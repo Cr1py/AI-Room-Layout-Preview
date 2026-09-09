@@ -52,7 +52,7 @@
   }
 
   .shell {
-    @apply relative mx-auto overflow-hidden flex items-center justify-center w-[70%] min-h-[500px] bg-[#dfe8df] border-2 border-foreground shadow-[8px_8px_0_rgba(24,58,55,0.12)];
+    @apply relative mx-auto overflow-hidden flex items-center justify-center w-[70%] h-[500px] bg-[#dfe8df] border-2 border-foreground shadow-[8px_8px_0_rgba(24,58,55,0.12)];
     background-image:
       linear-gradient(rgba(24, 58, 55, 0.07) 1px, transparent 1px),
       linear-gradient(90deg, rgba(24, 58, 55, 0.07) 1px, transparent 1px),
@@ -224,7 +224,7 @@
   }
 
   .preview-shell {
-    @apply min-h-[500px];
+    @apply h-[500px];
   }
 
   .preview-plant {

@@ -94,13 +94,15 @@ function App() {
                     src={sourceImage}
                     alt="og floor plan"
                     className="compare-img"
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                   />
                 }
                 itemTwo={
                   <ReactCompareSliderImage
                     src={currentImage}
-                    alt="Generated 3D room"
+                    alt="generated 3D room"
                     className="compare-img"
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                   />
                 }
               />

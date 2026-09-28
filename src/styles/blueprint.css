@@ -1,0 +1,7 @@
+.blueprint-label {
+  @apply absolute z-[3] font-mono text-[8px] font-medium tracking-[1.5px] text-foreground opacity-[0.55] pointer-events-none;
+}
+
+.blueprint-icon {
+  @apply absolute z-[1] text-foreground opacity-20 pointer-events-none;
+}

@@ -1,0 +1,40 @@
+.render-img,
+.render-fallback {
+  @apply w-full h-full object-cover;
+}
+
+.empty-preview {
+  @apply w-full h-full flex items-center justify-center relative z-[2]
+}
+
+.render-overlay {
+  @apply absolute inset-0 flex items-center justify-center z-10 bg-background/78 backdrop-blur-[3px];
+}
+
+.rendering-card {
+  @apply flex flex-col items-center p-[28px] bg-[#faf8f1] border border-foreground shadow-[6px_6px_0_rgba(24,58,55,0.15)];
+}
+
+.spinner {
+  @apply w-7 h-7 mb-3.5 text-foreground animate-spin;
+}
+
+.rendering-title {
+  @apply font-mono text-[13px] tracking-[1px] text-foreground;
+}
+
+.subtitle {
+  @apply mt-[5px] text-[11px] text-grey-dark;
+}
+
+.compare-stage {
+  @apply w-full h-100 rounded-3xl overflow-hidden;
+}
+
+.compare-img {
+  @apply w-full h-full object-cover;
+}
+
+.error-text {
+  @apply mt-2 text-center text-orange;
+}

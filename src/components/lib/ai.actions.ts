@@ -1,8 +1,10 @@
 import puter from "@heyputer/puter.js";
-import {AI_RENDER_PROMPT, IMAGE_RENDER_DIMENSION} from "./constants";
+import { AI_RENDER_PROMPT } from "./constants";
 
 interface Generate3DViewParams {
     sourceImage: string;
+    width: number;
+    height: number;
 }
 
 export const fetchAsDataUrl = async (url: string): Promise<string> => {
@@ -23,32 +25,31 @@ export const fetchAsDataUrl = async (url: string): Promise<string> => {
   });
 };
 
-export const generate3DView = async ({ sourceImage }: Generate3DViewParams) => {
+export const generate3DView = async ({ sourceImage, width, height }: Generate3DViewParams) => {
     const dataUrl = sourceImage.startsWith('data:')
       ? sourceImage
       : await fetchAsDataUrl(sourceImage);
 
-    // Puter input_image option takes base64 encoded inputs for img generation
     const base64Data = dataUrl.split(',')[1];
     const mimeType = dataUrl.split(';')[0].split(':')[1];
 
-    if(!mimeType || !base64Data) throw new Error('Invalid source image payload');
+    if (!mimeType || !base64Data) throw new Error('Invalid source image payload');
 
     const response = await puter.ai.txt2img(AI_RENDER_PROMPT, {
       provider: "gemini",
       model: "gemini-3.1-flash-image-preview",
       input_image: base64Data,
       input_image_mime_type: mimeType,
-      ratio: { w: IMAGE_RENDER_DIMENSION, h: IMAGE_RENDER_DIMENSION },
+      ratio: { w: width, h: height },
     });
 
     const rawImageUrl = (response as HTMLImageElement).src ?? null;
 
-    if (!rawImageUrl) return { renderedImage: null, renderedPath: undefined };
+    if (!rawImageUrl) return { renderedImage: null };
 
     const renderedImage = rawImageUrl.startsWith('data:')
-      ? rawImageUrl 
+      ? rawImageUrl
       : await fetchAsDataUrl(rawImageUrl);
 
-    return { renderedImage, renderedPath: undefined };
+    return { renderedImage };
 }

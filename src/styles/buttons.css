@@ -1,0 +1,26 @@
+.btn {
+  @apply inline-flex items-center justify-center mr-6;
+}
+
+.generate {
+  @apply inline-flex items-center justify-center px-4 py-2 mt-2 text-sm font-medium bg-foreground! text-[#faf8f1]! border border-foreground font-mono text-[11px] shadow-[3px_3px_0_#789b82] transition-[transform,box-shadow,background] duration-150 [transition-timing-function:ease];
+}
+
+.generate:hover {
+  @apply bg-[#315c50]! shadow-[1px_1px_0_#183a37];
+}
+
+.export,
+.share {
+  @apply inline-flex items-center justify-center px-4 py-2 bg-foreground! text-[#faf8f1]! border border-foreground font-mono text-[11px] shadow-[3px_3px_0_#789b82] transition-[transform,box-shadow,background] duration-150 [transition-timing-function:ease];
+}
+
+.export:hover,
+.share:hover {
+  @apply bg-[#315c50]! shadow-[1px_1px_0_#183a37];
+}
+
+.export:disabled,
+.share:disabled {
+  @apply opacity-40 pointer-events-none;
+}

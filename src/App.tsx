@@ -17,31 +17,31 @@ function App() {
   } = roomGeneration();
 
   return (
-    <div className="background-design">
+    <div>
       <div className="title">
         <h1>AI Room Layout Preview</h1>
       </div>
 
-      <div className="upload-section">
+      <div className="containter-section mb-8">
         <div className="title section-title">
           <h2>Upload Room Layout</h2>
         </div>
 
-        <div id="upload" className="shell upload-shell">
+        <div id="upload" className="shell">
           <div className="grid-overlay" />
 
-          <div className="blueprint-label label-top-left">FLOOR PLAN</div>
-          <div className="blueprint-label label-top-right">CR1PY SAYS HI</div>
-          <div className="blueprint-label label-bottom-left">:3 :3 :3</div>
-          <div className="blueprint-label label-bottom-right">MWAH</div>
+          <div className="blueprint-label top-[18px] left-[22px]">FLOOR PLAN</div>
+          <div className="blueprint-label top-[18px] right-[22px]">CR1PY SAYS HI</div>
+          <div className="blueprint-label bottom-[18px] left-[22px]">:3 :3 :3</div>
+          <div className="blueprint-label right-[22px] bottom-[18px]">MWAH</div>
 
-          <Leaf className="blueprint-icon plant-icon plant-one" />
-          <Leaf className="blueprint-icon plant-icon plant-two" />
-          <Leaf className="blueprint-icon plant-icon plant-three" />
-          <Sofa className="blueprint-icon sofa-icon" />
-          <LampDesk className="blueprint-icon lamp-icon" />
-          <Ruler className="blueprint-icon ruler-icon" />
-          <CircleDot className="blueprint-icon detail-icon" />
+          <Leaf className="blueprint-icon fill-none w-[55px] h-[55px] top-[22%] left-[7%] -rotate-[15deg]" />
+          <Leaf className="blueprint-icon fill-none w-10 h-10 top-[18%] right-[9%] rotate-[25deg]" />
+          <Leaf className="blueprint-icon fill-none w-12 h-12 bottom-[17%] left-[10%] -rotate-[25deg]" />
+          <Sofa className="blueprint-icon w-[75px] h-[75px] right-[7%] bottom-[17%]" />
+          <LampDesk className="blueprint-icon w-12 h-12 bottom-1/5 left-[8%]" />
+          <Ruler className="blueprint-icon w-[55px] h-[55px] top-[38%] right-[12%] -rotate-[25deg]" />
+          <CircleDot className="blueprint-icon w-[35px] h-[35px] top-[47%] left-[16%]" />
 
           <div className="upload-card">
             <div className="upload-head">
@@ -70,20 +70,20 @@ function App() {
         </div>
       </div>
 
-      <div className="display-section">
+      <div className="containter-section">
         <div className="title section-title">
           <h2>Generate 3D Preview</h2>
         </div>
 
         <div className="display-container">
-          <div className={`shell preview-shell ${isProcessing ? 'is-processing' : ''}`}>
+          <div className={`shell ${isProcessing ? 'is-processing' : ''}`}>
             <div className="grid-overlay" />
 
-            <div className="blueprint-label label-top-left">3D PREVIEW</div>
-            <div className="blueprint-label label-top-right">VISUALISATION</div>
+            <div className="blueprint-label top-[18px] left-[22px]">3D PREVIEW</div>
+            <div className="blueprint-label top-[18px] right-[22px]">VISUALISATION</div>
 
-            <Leaf className="blueprint-icon plant-icon preview-plant" />
-            <Ruler className="blueprint-icon ruler-icon preview-ruler" />
+            <Leaf className="blueprint-icon fill-none left-[5%] bottom-[10%] w-[65px] h-[65px]" />
+            <Ruler className="blueprint-icon w-[55px] h-[55px] top-[10%] right-[5%] -rotate-[25deg]" />
 
             {sourceImage && currentImage ? (
               <ReactCompareSlider
@@ -114,7 +114,6 @@ function App() {
 
                 {!sourceImage && (
                   <div className="empty-preview">
-                    <Sofa className="w-10 h-10" />
                     <span>Your 3D render will appear here</span>
                   </div>
                 )}

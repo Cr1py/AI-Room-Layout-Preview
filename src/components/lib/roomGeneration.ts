@@ -1,26 +1,42 @@
 import { useState } from 'react';
 import { generate3DView } from './ai.actions';
+import { resizeImageIfNeeded } from './image.utils';
+import { IMAGE_RENDER_DIMENSION } from './constants';
 
 export const roomGeneration = () => {
   const [sourceImage, setSourceImage] = useState<string | null>(null);
+  const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
   const [currentImage, setCurrentImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleUploadComplete = (base64Data: string) => {
+  const handleUploadComplete = async (base64Data: string) => {
     setCurrentImage(null);
     setError(null);
-    setSourceImage(base64Data);
+
+    try {
+      const resized = await resizeImageIfNeeded(base64Data, IMAGE_RENDER_DIMENSION);
+      setSourceImage(resized.dataUrl);
+      setDimensions({ width: resized.width, height: resized.height });
+    } catch (err) {
+      console.error('Failed to process uploaded image:', err);
+      setSourceImage(base64Data);
+      setDimensions(null);
+    }
   };
 
   const handleGenerate = async () => {
-    if (!sourceImage) return;
+    if (!sourceImage || !dimensions) return;
 
     setError(null);
     setIsProcessing(true);
 
     try {
-      const result = await generate3DView({ sourceImage });
+      const result = await generate3DView({
+        sourceImage,
+        width: dimensions.width,
+        height: dimensions.height,
+      });
 
       if (result.renderedImage) {
         setCurrentImage(result.renderedImage);
@@ -78,6 +94,6 @@ export const roomGeneration = () => {
     handleUploadComplete,
     handleGenerate,
     handleExport,
-    handleShare
+    handleShare,
   };
 };

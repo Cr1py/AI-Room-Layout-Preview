@@ -1,0 +1,19 @@
+body {
+  @apply font-sans bg-background;
+}
+
+h1 {
+  @apply font-monoton italic font-semibold text-[64px] text-foreground tracking-[-1.68px] my-5 max-lg:text-[36px] text-shadow-[4px_4px_0_rgba(24,58,55,0.12)];
+}
+
+h2 {
+  @apply font-monoton italic font-semibold text-[42px] leading-[118%] text-foreground tracking-[-0.24px] my-5 max-lg:text-xl [text-shadow:4px_4px_0_rgba(24,58,55,0.12)];
+}
+
+h3 {
+  @apply font-sans font-semibold text-xl leading-[118%] tracking-[-0.2px] mb-2 max-lg:text-[18px];
+}
+
+p {
+  @apply font-mono text-xs m-0;
+}

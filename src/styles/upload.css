@@ -1,0 +1,81 @@
+.upload-card {
+  @apply relative z-[5] flex flex-col items-center justify-self-center w-[62%] p-[34px] bg-[#faf8f1] border border-foreground/35 shadow-[7px_7px_0_rgba(24,58,55,0.12)] gap-4;
+}
+
+.upload-card::before,
+.upload-card::after {
+  content: "";
+  @apply absolute w-[18px] h-[18px] border-foreground border-solid opacity-50;
+}
+
+.upload-card::before {
+  @apply top-[10px] left-[10px] border-t border-l;
+}
+
+.upload-card::after {
+  @apply right-[10px] bottom-[10px] border-r border-b;
+}
+
+.upload-head {
+  @apply flex flex-col items-center justify-center p-4 text-center;
+}
+
+.upload-icon {
+  @apply w-12 h-12 flex items-center justify-center rounded-full mb-3 bg-foreground text-[#dfe8df];
+}
+
+.file-types {
+  @apply mt-2 font-mono text-[9px] tracking-[1px] text-blue-light;
+}
+
+.drop-content {
+  @apply flex flex-col items-center justify-center gap-2 text-center;
+}
+
+.drop-icon {
+  @apply w-12 h-12 flex items-center justify-center rounded-full bg-foreground/8 text-foreground;
+}
+
+.upload-dropzone {
+  @apply relative p-6 flex flex-col items-center justify-self-center w-4/5 gap-4 cursor-pointer bg-white/45 border-2 border-dashed border-blue-light transition-[background,border-color,transform] duration-200 [transition-timing-function:ease];
+}
+
+.upload-dropzone:hover {
+  @apply bg-white/80 border-foreground;
+}
+
+.drop-input {
+  @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10;
+}
+
+.upload-status {
+  @apply relative p-6 flex flex-col items-center justify-self-center w-4/5 gap-4 bg-white/55 border border-foreground/30;
+}
+
+.status-content {
+  @apply flex items-center gap-4 w-full;
+}
+
+.status-icon {
+  @apply flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-foreground/8 text-foreground;
+}
+
+.status-details {
+  @apply flex flex-col flex-1 gap-1.5 min-w-0;
+
+  h3 {
+    @apply truncate text-foreground;
+  }
+}
+
+.progress {
+  @apply relative w-full h-2 rounded-full overflow-hidden bg-grey-light;
+}
+
+.progress-bar {
+  @apply h-full rounded-full bg-green-dark transition-all duration-200 ease-out;
+}
+
+.status-text {
+  @apply text-grey-dark;
+}
